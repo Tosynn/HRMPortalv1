@@ -1,47 +1,25 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import { Home } from '../Home';
-import { Department } from '../Department';
-import { Employee } from '../Employee';
-import { BrowserRouter, Route, Switch, NavLink } from 'react-router-dom';
+import { Home } from './pages/Home';
+import { Department } from './pages/Department';
+import { Employee } from './pages/Employee';
+import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider, NavLink } from 'react-router-dom';
+import MainLayout from './layout/MainLayout';
 
 
 function App() {
-    return (
-        <BrowserRouter>
-        <div className="App container">
-            <h3 className="d-flex justify-content-center m-3">
-                ReactJS App Frontend
-            </h3>
 
-            <nav className="navbar navbar-expand-sm bg-light navbar-dark">
-                <ul className="navbar-nav">
-                    <li className="nav-item- m-1">
-                        <NavLink className="btn btn-light btn-outline-primary" to="/home">
-                            Home
-                        </NavLink>
-                    </li>
-                    <li className="nav-item- m-1">
-                        <NavLink className="btn btn-light btn-outline-primary" to="/department">
-                            Department
-                        </NavLink>
-                    </li>
-                    <li className="nav-item- m-1">
-                        <NavLink className="btn btn-light btn-outline-primary" to="/employee">
-                            Department
-                        </NavLink>
-                    </li>
-                </ul>
-            </nav>
-
-            <Switch>
-                <Route path='/home' component={Home} />
-                <Route path='/department' component={Department} />
-                <Route path='/employee' component={Employee} />
-            </Switch>
-            </div>
-        </BrowserRouter>
+    const router = createBrowserRouter(
+        createRoutesFromElements(
+            <Route path='/' element={<MainLayout />}>
+                <Route index element={<Home />} />
+                <Route path='/Department' element={<Department />} />
+                <Route path='/Employee' element={<Employee />} />
+            </Route>
+        )
     );
+
+    return <RouterProvider router={router}/>
     
 }
 
