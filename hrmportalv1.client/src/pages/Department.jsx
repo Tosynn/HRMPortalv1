@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react'
 
-export class Department extends Component {
-    render() {
-        return (
-            <div>
-                <h3>This is Department page</h3>
-            </div>
-        )
-    }
+const Department = () => {
+    return (
+        <div>Department Page</div>
+    )
 }
+
+export default Department
